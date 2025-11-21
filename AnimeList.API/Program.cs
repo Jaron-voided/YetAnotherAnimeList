@@ -21,7 +21,7 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<IDbConnectionFactory>(_ => 
     new SqliteConnectionFactory(connectionString));
 
-builder.Services.AddScoped<IAnimeRepository, AnimeRepository>();
+builder.Services.AddScoped<IAnimeLoadRepository, AnimeLoadRepository>();
 
 // CSV Parse and mapping
 builder.Services.AddSingleton<CsvAnimeParser>(_ =>
@@ -42,7 +42,7 @@ using (var scope = app.Services.CreateScope())
     var initializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
     await initializer.InitializeDbAsync();
     
-    var repo = services.GetRequiredService<IAnimeRepository>();
+    var repo = services.GetRequiredService<IAnimeLoadRepository>();
     var hasData = await repo.HasBeenLoadedAsync();
 
     if (!hasData)

@@ -1,11 +1,15 @@
+using AnimeProject.Domain.Enums;
 using AnimeProject.Domain.Models;
 
 namespace AnimeProject.Application.Interfaces;
 
 public interface IAnimeRepository
 {
-    Task<bool> HasBeenLoadedAsync();
-    Task InsertAnimeAsync(Anime anime);
-    //Task UpdateAnimeAsync(Anime anime);
-    Task InsertAllAnimeAsync(IEnumerable<Anime> animes);
+    Task<IEnumerable<Anime>> GetAllAsync();
+    Task<Anime?> GetByIdAsync(int malId);
+    Task<IEnumerable<Anime>> GetByTitleAsync(string title);
+    Task<IEnumerable<Anime>> GetByMinimumScoreAsync(double minScore);
+    Task<IEnumerable<Anime>> GetByTypeAsync(AnimeEnums.AnimeType type);
+    Task<IEnumerable<Anime>> GetByStatusAsync(AnimeEnums.AnimeStatus status);
+    Task<IEnumerable<Anime>> GetByRatingAsync(AnimeEnums.AnimeRating rating);
 }

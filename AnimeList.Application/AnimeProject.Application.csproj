@@ -10,8 +10,4 @@
     <ProjectReference Include="..\AnimeList.Domain\AnimeProject.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Handlers\" />
-  </ItemGroup>
-
 </Project>

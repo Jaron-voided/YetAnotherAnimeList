@@ -6,16 +6,16 @@ namespace AnimeProject.Persistence.Database;
 
 public class AnimeDbOrchestrator
 {
-    private readonly IAnimeRepository _animeRepository;
+    private readonly IAnimeLoadRepository _animeLoadRepository;
     private readonly CsvAnimeParser _csvAnimeParser;
     private readonly RawAnimeMapper _rawAnimeMapper;
 
     public AnimeDbOrchestrator(
-        IAnimeRepository animeRepository,
+        IAnimeLoadRepository animeLoadRepository,
         CsvAnimeParser csvAnimeParser,
         RawAnimeMapper rawAnimeMapper)
     {
-        _animeRepository = animeRepository;
+        _animeLoadRepository = animeLoadRepository;
         _csvAnimeParser = csvAnimeParser;
         _rawAnimeMapper = rawAnimeMapper;
     }
@@ -26,7 +26,7 @@ public class AnimeDbOrchestrator
         
         List<Anime> cleanAnimes = MapAllAnimes(rawAnimeDtos);
 
-        await _animeRepository.InsertAllAnimeAsync(cleanAnimes);
+        await _animeLoadRepository.InsertAllAnimeAsync(cleanAnimes);
     }
     
     // It keeps suggesting IEnumerable?

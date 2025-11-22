@@ -2,20 +2,25 @@ using System.Data;
 using AnimeProject.Application.Interfaces;
 using AnimeProject.Domain.Enums;
 using AnimeProject.Domain.Models;
+using AnimeProject.Persistence.Database;
+using Dapper;
 
 namespace AnimeProject.Persistence.Repositories;
 
 public class AnimeRepository : IAnimeRepository
 {
-    private readonly IDbConnection _connection;
+    private readonly IDbConnectionFactory _connectionFactory;
     
-    public AnimeRepository(IDbConnection connection)
+    public AnimeRepository(IDbConnectionFactory connectionFactory)
     {
-        _connection = connection;
+        _connectionFactory = connectionFactory;
     }
-    public Task<IEnumerable<Anime>> GetAllAsync()
+    public async Task<IEnumerable<Anime>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        using var connection = _connectionFactory.CreateConnection();
+
+        const string sql = "SELECT * FROM Anime";
+        return await connection.QueryAsync<Anime>(sql);
     }
 
     public Task<Anime?> GetByIdAsync(int malId)
@@ -28,9 +33,15 @@ public class AnimeRepository : IAnimeRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Anime>> GetByMinimumScoreAsync(double minScore)
+    public async Task<IEnumerable<Anime>> GetByMinimumScoreAsync(double minScore)
     {
-        throw new NotImplementedException();
+        using var connection = _connectionFactory.CreateConnection();
+        
+        const string sql = @"SELECT * 
+                            FROM Anime 
+                            WHERE score >= @MinScore";
+
+        return await connection.QueryAsync<Anime>(sql, new { MinScore = minScore });
     }
 
     public Task<IEnumerable<Anime>> GetByTypeAsync(AnimeEnums.AnimeType type)

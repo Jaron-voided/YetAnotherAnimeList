@@ -1,4 +1,6 @@
+using AnimeProject.Application.Handlers.Anime.Query;
 using AnimeProject.Application.Interfaces;
+using AnimeProject.Application.Mapping;
 using AnimeProject.Persistence.CSV;
 using AnimeProject.Persistence.Database;
 using AnimeProject.Persistence.Repositories;
@@ -22,6 +24,11 @@ builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
     new SqliteConnectionFactory(connectionString));
 
 builder.Services.AddScoped<IAnimeLoadRepository, AnimeLoadRepository>();
+
+builder.Services.AddScoped<IAnimeRepository, AnimeRepository>();
+builder.Services.AddScoped<AnimeQueryHandler>();
+
+builder.Services.AddSingleton<IAnimeMapper, AnimeMapper>();
 
 // CSV Parse and mapping
 builder.Services.AddSingleton<CsvAnimeParser>(_ =>

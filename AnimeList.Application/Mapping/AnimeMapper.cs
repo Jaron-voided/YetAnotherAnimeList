@@ -24,7 +24,7 @@ public class AnimeMapper : IAnimeMapper
             Genres = anime.Genres,
             Episodes = anime.Episodes,
             Season = anime.Season,
-            Year = anime.Year,
+            Year = anime.Year ?? anime.StartDate?.Year,
             Streaming = anime.Streaming
         };
     }

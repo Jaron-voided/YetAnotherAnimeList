@@ -1,7 +1,7 @@
 using System.Data;
 using Microsoft.Data.Sqlite;
 
-namespace AnimeProject.Persistence.Database;
+namespace AnimeList.Persistence.Database;
 
 public class SqliteConnectionFactory : IDbConnectionFactory
 {

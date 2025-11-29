@@ -1,11 +1,11 @@
-using AnimeProject.Domain.Enums;
-using AnimeProject.Domain.Models;
+using AnimeList.Domain.Enums;
+using AnimeList.Domain.Models;
 
-namespace AnimeProject.Persistence.CSV;
+namespace AnimeList.Persistence.CSV;
 
 public class RawAnimeMapper
 {
-    internal Anime Map(RawAnimeDto rawDetails)
+    public Anime Map(RawAnimeDto rawDetails)
     {
         var modelAnime = new Anime
         {
@@ -34,8 +34,6 @@ public class RawAnimeMapper
                 ? (int)rawDetails.Episodes
                 : null,
             
-            Season = rawDetails.Season,
-           
             Year = rawDetails.Year.HasValue
                 ? (int)rawDetails.Year
                 : null,

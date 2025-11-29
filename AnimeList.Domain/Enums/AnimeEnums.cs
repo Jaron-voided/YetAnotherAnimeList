@@ -1,4 +1,4 @@
-namespace AnimeProject.Domain.Enums;
+namespace AnimeList.Domain.Enums;
 
 public class AnimeEnums
 {

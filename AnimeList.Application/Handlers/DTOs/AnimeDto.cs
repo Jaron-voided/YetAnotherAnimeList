@@ -1,4 +1,4 @@
-﻿namespace AnimeProject.Application.Handlers.DTOs;
+﻿namespace AnimeList.Application.Handlers.DTOs;
 
 public class AnimeDto
 {
@@ -16,9 +16,9 @@ public class AnimeDto
 
     public double? Score { get; set; }
 
-    public DateTime? StartDate { get; set; }
+    public DateOnly? StartDate { get; set; }
     
-    public DateTime? EndDate { get; set; }
+    public DateOnly? EndDate { get; set; }
 
     public string? Synopsis { get; set; }
 
@@ -29,9 +29,7 @@ public class AnimeDto
     public string? Genres { get; set; }
     
     public int? Episodes { get; set; }
-
-    public string? Season { get; set; }
-
+    
     public int? Year { get; set; }
 
     public string? Streaming { get; set; }

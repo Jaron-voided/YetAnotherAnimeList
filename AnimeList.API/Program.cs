@@ -1,9 +1,10 @@
-using AnimeProject.Application.Handlers.Anime.Query;
-using AnimeProject.Application.Interfaces;
-using AnimeProject.Application.Mapping;
-using AnimeProject.Persistence.CSV;
-using AnimeProject.Persistence.Database;
-using AnimeProject.Persistence.Repositories;
+using System.Text.Json.Serialization;
+using AnimeList.Application.Handlers.Anime.Query;
+using AnimeList.Application.Interfaces;
+using AnimeList.Application.Mapping;
+using AnimeList.Persistence.CSV;
+using AnimeList.Persistence.Database;
+using AnimeList.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,12 @@ var csvLocation = builder.Configuration["CsvSettings:DetailsPath"]
                   ?? throw new InvalidOperationException("CsvSettings:DetailsPath not found");
 
 // register API services
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition =
+            JsonIgnoreCondition.WhenWritingNull;
+    });
 
 // register persistence layer
 builder.Services.AddSingleton<IDbConnectionFactory>(_ => 
@@ -62,3 +68,5 @@ using (var scope = app.Services.CreateScope())
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

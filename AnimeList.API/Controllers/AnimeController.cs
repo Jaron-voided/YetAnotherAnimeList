@@ -1,5 +1,5 @@
-using AnimeProject.Application.Handlers.Anime.Query;
-using AnimeProject.Domain.Enums;
+using AnimeList.Application.Handlers.Anime.Query;
+using AnimeList.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnimeList.API.Controllers;

@@ -1,7 +1,7 @@
 using System.Globalization;
 using CsvHelper;
 
-namespace AnimeProject.Persistence.CSV;
+namespace AnimeList.Persistence.CSV;
 
 public class CsvAnimeParser
 {

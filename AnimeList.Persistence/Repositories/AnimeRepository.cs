@@ -1,11 +1,11 @@
 using System.Data;
-using AnimeProject.Application.Interfaces;
-using AnimeProject.Domain.Enums;
-using AnimeProject.Domain.Models;
-using AnimeProject.Persistence.Database;
+using AnimeList.Application.Interfaces;
+using AnimeList.Domain.Enums;
+using AnimeList.Domain.Models;
+using AnimeList.Persistence.Database;
 using Dapper;
 
-namespace AnimeProject.Persistence.Repositories;
+namespace AnimeList.Persistence.Repositories;
 
 public class AnimeRepository : IAnimeRepository
 {

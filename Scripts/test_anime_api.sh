@@ -1,59 +1,19 @@
 #!/usr/bin/env bash
 
-# Base URL for your API
 BASE="https://localhost:5001/api/anime"
-
-# HTTPie options for local HTTPS
 OPTS="--verify=no"
 
-echo ""
-echo "====================================="
-echo "  TEST: Get Anime by ID (MalId = 1)"
-echo "====================================="
-http $OPTS $BASE/1
+echo "===== Get by ID (Cowboy Bebop) ====="
+http $OPTS "$BASE/1" | jq '{malId, title, startDate, endDate, score, streaming}'
 
+echo "===== Get by ID (future anime w/ nulls) ====="
+http $OPTS "$BASE/62516" | jq '{malId, title, startDate, endDate, score, streaming}'
 
-echo ""
-echo "====================================="
-echo "  TEST: Search Anime by Title"
-echo "  Query: 'Naruto'"
-echo "====================================="
-http $OPTS "$BASE/search" title=="Naruto"
+echo "===== Search by Title ====="
+http $OPTS "$BASE/search" title=="Trigun" | jq 'map({malId, title, streaming})[:5]'
 
+echo "===== Search by Minimum Score (8+) ====="
+http $OPTS "$BASE/minScore" minScore==8 | jq 'map({title, score})[:5]'
 
-echo ""
-echo "====================================="
-echo "  TEST: Search by Minimum Score"
-echo "  score >= 8.0"
-echo "====================================="
-http $OPTS "$BASE/minScore" minScore==8.0
-
-
-echo ""
-echo "====================================="
-echo "  TEST: Search by Type"
-echo "  Example: type==TV"
-echo "====================================="
-http $OPTS "$BASE/type" type==TV
-
-
-echo ""
-echo "====================================="
-echo "  TEST: Search by Status"
-echo "  Example: status==Airing"
-echo "====================================="
-http $OPTS "$BASE/status" status==Airing
-
-
-echo ""
-echo "====================================="
-echo "  TEST: Search by Rating"
-echo "  Example: rating==R"
-echo "====================================="
-http $OPTS "$BASE/rating" rating==R
-
-
-echo ""
-echo "====================================="
-echo "  ALL TESTS COMPLETE"
-echo "====================================="
+echo "===== Search by Rating (R) ====="
+http $OPTS "$BASE/rating" rating==R | jq 'map({title, rating})[:5]'

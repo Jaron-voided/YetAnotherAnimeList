@@ -1,6 +1,6 @@
 using Dapper;
 
-namespace AnimeProject.Persistence.Database;
+namespace AnimeList.Persistence.Database;
 
 public class DbInitializer
 {

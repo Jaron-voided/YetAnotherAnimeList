@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AnimeList.Persistence\AnimeProject.Persistence.csproj" />
-    <ProjectReference Include="..\AnimeList.Application\AnimeProject.Application.csproj" />
+    <ProjectReference Include="..\AnimeList.Persistence\AnimeList.Persistence.csproj" />
+    <ProjectReference Include="..\AnimeList.Application\AnimeList.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

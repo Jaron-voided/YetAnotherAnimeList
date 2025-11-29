@@ -1,9 +1,9 @@
-using AnimeProject.Application.Handlers.DTOs;
-using AnimeProject.Application.Interfaces;
-using AnimeProject.Application.Mapping;
-using AnimeProject.Domain.Enums;
+using AnimeList.Application.Handlers.DTOs;
+using AnimeList.Application.Interfaces;
+using AnimeList.Application.Mapping;
+using AnimeList.Domain.Enums;
 
-namespace AnimeProject.Application.Handlers.Anime.Query;
+namespace AnimeList.Application.Handlers.Anime.Query;
 
 public class AnimeQueryHandler
 {
@@ -68,7 +68,7 @@ public class AnimeQueryHandler
         return _mapper.ToDtoList(models);
     }
 
-    // optional future:
+    /*// optional future:
     public async Task<IEnumerable<AnimeDto>> FilterAsync(
         AnimeEnums.AnimeType? type = null,
         AnimeEnums.AnimeStatus? status = null,
@@ -76,5 +76,5 @@ public class AnimeQueryHandler
         double? minScore = null)
     {
         throw new NotImplementedException();
-    }
+    }*/
 }

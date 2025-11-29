@@ -1,7 +1,7 @@
-using AnimeProject.Application.Handlers.DTOs;
-using AnimeProject.Domain.Models;
+using AnimeList.Application.Handlers.DTOs;
+using AnimeList.Domain.Models;
 
-namespace AnimeProject.Application.Mapping;
+namespace AnimeList.Application.Mapping;
 
 public class AnimeMapper : IAnimeMapper
 {
@@ -16,17 +16,23 @@ public class AnimeMapper : IAnimeMapper
             Status = anime.Status.ToString(),
             Rating = anime.Rating.ToString(),
             Score = anime.Score,
-            StartDate = anime.StartDate,
-            EndDate = anime.EndDate,
+            StartDate = MapDate(anime.StartDate),
+            EndDate = MapDate(anime.EndDate),
             Synopsis = anime.Synopsis,
             Rank = anime.Rank,
             Popularity = anime.Popularity,
             Genres = anime.Genres,
             Episodes = anime.Episodes,
-            Season = anime.Season,
             Year = anime.Year ?? anime.StartDate?.Year,
             Streaming = anime.Streaming
         };
+    }
+    
+    private DateOnly? MapDate(DateTime? dateTime)
+    {
+        if (dateTime != null)
+            return DateOnly.FromDateTime(dateTime.Value);
+        return null;
     }
 
     public IEnumerable<AnimeDto> ToDtoList(IEnumerable<Anime> animes)

@@ -1,6 +1,6 @@
-using AnimeProject.Domain.Enums;
+using AnimeList.Domain.Enums;
 
-namespace AnimeProject.Domain.Models;
+namespace AnimeList.Domain.Models;
 
 public class Anime
 {
@@ -31,9 +31,7 @@ public class Anime
     public string? Genres { get; set; }
     
     public int? Episodes { get; set; }
-
-    public string? Season { get; set; }
-
+    
     public int? Year { get; set; }
 
     public string? Streaming { get; set; }

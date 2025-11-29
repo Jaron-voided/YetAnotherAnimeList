@@ -1,9 +1,9 @@
-using AnimeProject.Application.Interfaces;
-using AnimeProject.Domain.Models;
-using AnimeProject.Persistence.Database;
+using AnimeList.Application.Interfaces;
+using AnimeList.Domain.Models;
+using AnimeList.Persistence.Database;
 using Dapper;
 
-namespace AnimeProject.Persistence.Repositories;
+namespace AnimeList.Persistence.Repositories;
 
 public class AnimeLoadRepository : IAnimeLoadRepository
 {
@@ -30,7 +30,6 @@ public class AnimeLoadRepository : IAnimeLoadRepository
                                          Popularity,
                                          Genres,
                                          Episodes,
-                                         Season,
                                          Year,
                                          Streaming
                                      )
@@ -49,7 +48,6 @@ public class AnimeLoadRepository : IAnimeLoadRepository
                                          @Popularity,
                                          @Genres,
                                          @Episodes,
-                                         @Season,
                                          @Year,
                                          @Streaming
                                      );
@@ -61,9 +59,7 @@ public class AnimeLoadRepository : IAnimeLoadRepository
 
         string sql = "SELECT COUNT(1) FROM Anime LIMIT 1";
         int count = await conn.ExecuteScalarAsync<int>(sql);
-        
-        /*if (count == 0) return false;
-        return true;*/
+
         return count > 0;
     }
     

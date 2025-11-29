@@ -1,6 +1,6 @@
-using AnimeProject.Domain.Models;
+using AnimeList.Domain.Models;
 
-namespace AnimeProject.Application.Interfaces;
+namespace AnimeList.Application.Interfaces;
 
 public interface IAnimeLoadRepository
 {

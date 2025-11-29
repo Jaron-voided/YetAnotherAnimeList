@@ -1,7 +1,7 @@
-using AnimeProject.Application.Handlers.DTOs;
-using AnimeProject.Domain.Models;
+using AnimeList.Application.Handlers.DTOs;
+using AnimeList.Domain.Models;
 
-namespace AnimeProject.Application.Mapping;
+namespace AnimeList.Application.Mapping;
 
 public interface IAnimeMapper
 {

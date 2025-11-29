@@ -1,8 +1,8 @@
-using AnimeProject.Application.Interfaces;
-using AnimeProject.Domain.Models;
-using AnimeProject.Persistence.CSV;
+using AnimeList.Application.Interfaces;
+using AnimeList.Domain.Models;
+using AnimeList.Persistence.CSV;
 
-namespace AnimeProject.Persistence.Database;
+namespace AnimeList.Persistence.Database;
 
 public class AnimeDbOrchestrator
 {

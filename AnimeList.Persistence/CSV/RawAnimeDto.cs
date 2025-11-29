@@ -1,6 +1,6 @@
 using CsvHelper.Configuration.Attributes;
 
-namespace AnimeProject.Persistence.CSV;
+namespace AnimeList.Persistence.CSV;
 
 public class RawAnimeDto
 {

@@ -1,0 +1,129 @@
+.shell {
+  margin: 16px 0 12px;
+  padding: 16px 20px 12px;
+  background: linear-gradient(
+      120deg,
+      rgba(255, 51, 132, 0.08),
+      rgba(52, 142, 255, 0.08)
+    ),
+    rgba(15, 17, 22, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  display: grid;
+  gap: 12px;
+}
+
+.row {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: flex-start;
+}
+
+.rowControls {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: flex-end;
+}
+
+.group {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.selectShell {
+  position: relative;
+}
+
+.selectShell::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--accent-blue);
+  border-bottom: 2px solid var(--accent-blue);
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(52, 142, 255, 0.6));
+}
+
+.select {
+  width: 100%;
+  appearance: none;
+  padding: 12px 44px 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.65);
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  outline: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+.select option {
+  background: #0f1116;
+  color: var(--text);
+  color-scheme: dark;
+}
+
+.select:focus-visible {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 14px rgba(52, 142, 255, 0.65);
+}
+
+.chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.chipActive {
+  border-color: var(--accent-blue);
+  color: var(--accent-pink);
+  background: linear-gradient(
+      90deg,
+      rgba(255, 51, 132, 0.18),
+      rgba(52, 142, 255, 0.22)
+    ),
+    rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 14px rgba(52, 142, 255, 0.65),
+    0 0 20px rgba(255, 51, 132, 0.4);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 14px 14px 10px;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+}

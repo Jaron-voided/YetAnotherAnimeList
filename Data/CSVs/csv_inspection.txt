@@ -1,0 +1,58 @@
+CSV Inspection Report
+Generated on: Sat Dec 20 11:51:55 AM EST 2025
+======================================
+
+===== details.csv =====
+Rows: 28955
+--- HEAD (5 rows) ---
+mal_id  title     title_japanese  url                                           image_url                                                 type   status           score  scored_by  start_date                 end_date  synopsis  rank  popularity  members  favorites  genres  studios  themes  demographics  source  rating  episodes  season  year  producers  explicit_genres  licensors  streaming
+59356   -Socket-  -socket-        https://myanimelist.net/anime/59356/-Socket-  https://cdn.myanimelist.net/images/anime/1043/144360.jpg  Movie  Finished Airing                    2010-01-01T00:00:00+00:00            "A girl with a cord growing out of her back wanders around hungry and searching for electricity.
+
+(Source: YouTube, translated)"  17086.0               22507                 195                                                   0                                                         ['Comedy']  []               []    []      Original                   G - All Ages  1.0                                                                        ['Nagoya Zokei University']  []  []                          []
+56036                           ......                ......                https://myanimelist.net/anime/56036/-                 https://cdn.myanimelist.net/images/anime/1057/137264.jpg  Music       Finished Airing  6.53  503.0   2023-06-11T00:00:00+00:00                Music video directed by obmolot for the song ...... by x0o0x_.      15004  941                          2   ['Horror', 'Supernatural']  ['Flat Studio']  ['Music']  []  Original  PG-13 - Teens 13 or older  1.0          []  []  []  []
+2928                            .hack//G.U. Returner  .HACK//G.U. RETURNER  https://myanimelist.net/anime/2928/hack__GU_Returner  https://cdn.myanimelist.net/images/anime/1798/115989.jpg  OVA         Finished Airing  6.65  9745.0  2007-01-18T00:00:00+00:00                "The characters from previous .hack//G.U. Games and .hack//Roots receive an email from Ovan. He is requesting them to go to Hidden Forbidden Festival where is set up a mysterious summer festival. There they find an AIDA Chim Chim who wishes to peacefully co-exist with the other players of The World. It then transforms into the word ""Returner"", so they assume it to mean that Ovan will return to The World.
+
+(Source: ANN)"  6366.0               5056                 22525                                                31                                                        ['Adventure', 'Drama', 'Fantasy']  ['Bee Train']    ['Video Game']  []       Game                       PG-13 - Teens 13 or older  1.0          ['Bandai Visual', 'CyberConnect2']  []  []  []
+3269            .hack//G.U. Trilogy  .hack//G.U. Trilogy  https://myanimelist.net/anime/3269/hack__GU_Trilogy  https://cdn.myanimelist.net/images/anime/1566/151023.jpg  Movie                              Finished Airing  7.06            15373.0  2007-12-22T00:00:00+00:00                             "Based on the CyberConnect2 HIT GAME, now will be released in a CG Movie!
+
+The Movie will be placed in the storyline of each .hack//G.U. games trilogy. The story follows Haseo, a player in the online MMORPG called The World:R2 at first depicted as a PKK (Player Killer Killer) known as the ""Terror of Death"", a former member of the disbanded Twilight Brigade guild. Haseo encounters Azure Kite (believing him to be Tri-Edge and blaming him for what happened to Shino) but is hopelessly outmatched. Azure Kite easily defeats Haseo and Data Drains him, reducing his level from 133 to 1 and leaving him without any items, weapons, or member addresses. He is left with a mystery on his hands as to the nature of the Data Drain and why Azure Kite is in possession of such a skill.
+
+Eventually Haseo gains the ""Avatar"" of Skeith. Acquiring the ability to call Skeith and wield his abilities, such as Data Drain. With Skeith as his strength, Haseo begins the quest for a way to save Shino.
+
+He is seen seeking out a PK (Player Killer) known as Tri-Edge, whose victims supposedly are unable to return to The World after he PKs them. Haseo's friend, Shino, was attacked six months prior to the events of the game by Tri-Edge, and the player herself, Shino Nanao, was left in a coma.
+
+(Source: AniDB)"  4194.0                            4215                 34264                                                             104                                                   ['Action', 'Fantasy']  ['CyberConnect2']  ['Video Game']  []      Game                       PG-13 - Teens 13 or older  1.0          ['Bandai Visual']  []  ['Funimation', 'Bandai Entertainment']  []
+4469              .hack//G.U. Trilogy: Parody Mode  .hack//G.U. Trilogy  https://myanimelist.net/anime/4469/hack__GU_Trilogy__Parody_Mode  https://cdn.myanimelist.net/images/anime/10/8661.jpg  Special                Finished Airing    6.35            4317.0  2008-03-25T00:00:00+00:00                             "A special bonus Parody Mode added to the extras of the .hack//G.U. Trilogy 
+
+(Source: AniDB)"  8182.0  6696  11135  10  ['Comedy', 'Fantasy', 'Sci-Fi']  []  ['Parody', 'Video Game']  []  Game  PG-13 - Teens 13 or older  1.0          ['Bandai Visual']  []  []  []
+
+===== ratings.csv =====
+Rows: 124298357
+--- HEAD (5 rows) ---
+username     anime_id  status     score  is_rewatching  num_watched_episodes
+--------788  30276     watching   7      0.0            3
+--------788  28851     completed  7      0.0            1
+--------788  41168     completed  7      0.0            1
+--------788  22199     completed  10     0.0            24
+--------788  16498     completed  10     0.0            25
+
+===== recommendations.csv =====
+Rows: 105249
+--- HEAD (5 rows) ---
+mal_id  recommendation_mal_id
+3269    317
+3269    6922
+3269    299
+3269    3446
+3269    5681
+
+===== stats.csv =====
+Rows: 28955
+--- HEAD (5 rows) ---
+mal_id  watching  completed  on_hold  dropped  plan_to_watch  total  score_1_votes  score_1_percentage  score_2_votes  score_2_percentage  score_3_votes  score_3_percentage  score_4_votes  score_4_percentage  score_5_votes  score_5_percentage  score_6_votes  score_6_percentage  score_7_votes  score_7_percentage  score_8_votes  score_8_percentage  score_9_votes  score_9_percentage  score_10_votes  score_10_percentage
+59356   7         146        4        20       20             197    2.0            2.2                 0.0            0.0                 3.0            3.3                 6.0            6.6                 25.0           27.5                33.0           36.3                19.0           20.9                2.0            2.2                 0.0            0.0                 1.0             1.1
+56036   21        770        8        29       113            941    5.0            1.0                 6.0            1.2                 8.0            1.6                 14.0           2.8                 50.0           9.9                 138.0          27.4                144.0          28.6                81.0           16.1                17.0           3.4                 40.0            8.0
+2928    451       14953      302      349      6472           22527  101.0          1.0                 93.0           1.0                 164.0          1.7                 457.0          4.7                 1184.0         12.1                2054.0         21.1                2709.0         27.8                1500.0         15.4                875.0          9.0                 608.0           6.2
+3269    726       22790      452      537      9762           34267  120.0          0.8                 156.0          1.0                 260.0          1.7                 560.0          3.6                 1270.0         8.3                 2457.0         16.0                4157.0         27.0                3075.0         20.0                1919.0         12.5                1400.0          9.1
+4469    241       6918       182      266      3528           11135  83.0           1.9                 104.0          2.4                 182.0          4.2                 292.0          6.8                 683.0          15.8                888.0          20.6                871.0          20.2                592.0          13.7                308.0          7.1                 315.0           7.3
+

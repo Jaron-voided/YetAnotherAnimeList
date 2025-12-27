@@ -1,0 +1,13 @@
+Make sure database entries are unique
+More testing...
+Add more error handling/try catch
+Clean and refactor
+Benchmark.net for performance testing...
+Figure out how to work profiler so I can ensure what the bottleneck is
+
+Figure out how to seed all items in my database at once instead of one at a time
+benchmark.net
+
+Do CSV -> JSON -> Database????
+Bulk insert??
+

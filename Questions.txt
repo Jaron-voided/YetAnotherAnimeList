@@ -1,0 +1,5 @@
+Since my repositories are going to be called with _userRepo.SomeMethod() should my method names be
+short, (AddAsync) or descriptive (AddUserAsync)
+
+To query multiple anime entries from a user, should the user repo/handler handle this, or the anime entry repo/handlers
+

@@ -4,6 +4,7 @@ using AnimeList.Application.RepoInterfaces.AnimeRatings;
 using AnimeList.Application.RepoInterfaces.AnimeRecommendations;
 using AnimeList.Application.RepoInterfaces.AnimeStats;
 using AnimeList.Persistence.Database;
+using AnimeList.Persistence.Database.Orchestrator;
 
 namespace AnimeList.API.HostedServices;
 

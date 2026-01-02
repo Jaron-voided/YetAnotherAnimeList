@@ -1,5 +1,4 @@
 using AnimeList.Application.RepoInterfaces.AnimeRatings;
-using AnimeList.Domain.Enums;
 using AnimeList.Persistence.Database;
 using Dapper;
 

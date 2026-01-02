@@ -143,10 +143,12 @@ public class DbInitializer
                       NumberOfWatchedEpisodes   INTEGER NOT NULL,
                       
                       PRIMARY KEY (Username, MalId),
-       
+                      
                       FOREIGN KEY (MalId) REFERENCES Anime (MalId)
                   );
                   """;
+        
+
 
         await connection.ExecuteAsync(sql);
     }

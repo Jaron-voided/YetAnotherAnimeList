@@ -69,11 +69,7 @@ public class AnimeLoadRepository : IAnimeLoadRepository
         
         await conn.ExecuteAsync(insertSql, anime);
     }
-
-    // This method brings me down to...
-    /*Parsing took 935 ms 
-    , Mapping took 32 ms 
-    , Loading DB took 1148 ms*/
+    
     // Could look into batching, but this fast enough for now!!
     public async Task InsertAllAnimeAsync(IEnumerable<Domain.Models.Anime> animes)
     {

@@ -1,3 +1,5 @@
+using AnimeList.Persistence.Diagnostics;
+
 namespace AnimeList.Persistence.Database.Orchestrator;
 
 public class AnimeDbOrchestrator
@@ -32,16 +34,27 @@ public class AnimeDbOrchestrator
 
     public async Task SeedDatabaseAsync()
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("Database Seed from startup service: AnimeDbOrchestrator");
+        
+        Profiler.Begin("AnimeDatabase seed from orchestrator");
         Console.WriteLine("Seeding Anime database...");
         await _seedAnime.SeedAnimeAsync();
+        Profiler.End();
         
+        Profiler.Begin("AnimeStats seed from orchestrator");
         Console.WriteLine("Seeding AnimeStats database...");
         await _seedAnimeStats.SeedAnimeStatsAsync();
+        Profiler.End();
         
+        Profiler.Begin("AnimeRecommendations seed from orchestrator");
         Console.WriteLine("Seeding AnimeRecommendations database...");
         await _seedAnimeRecommendations.SeedAnimeRecommendationsAsync();
-        
+        Profiler.End();
+
+        Profiler.Begin("AnimeRatings seed from orchestrator");
         Console.WriteLine("Seeding AnimeRatings database...");
         await _seedAnimeRatings.SeedAnimeRatingsAsync();
+        Profiler.End();
     }
 }

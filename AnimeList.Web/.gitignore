@@ -22,3 +22,24 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# === Frontend (React / TypeScript) ===
+
+# Env
+.env
+.env.*
+
+# Caches
+.vite
+.eslintcache
+
+# Tests / coverage
+coverage
+.nyc_output
+
+# TypeScript
+*.tsbuildinfo
+
+# Storybook
+storybook-static
+

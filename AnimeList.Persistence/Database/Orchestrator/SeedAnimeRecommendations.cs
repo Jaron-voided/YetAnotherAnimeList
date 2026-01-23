@@ -1,8 +1,9 @@
 using System.Diagnostics;
-using AnimeList.Application.Interfaces.Anime;
+using AnimeList.Application.RepoInterfaces.Anime;
 using AnimeList.Application.RepoInterfaces.AnimeRecommendations;
 using AnimeList.Domain.Models;
 using AnimeList.Persistence.CSV.AnimeRecommendations;
+using AnimeList.Persistence.Diagnostics;
 
 namespace AnimeList.Persistence.Database.Orchestrator;
 
@@ -33,6 +34,8 @@ public class SeedAnimeRecommendations
     
     internal async Task SeedAnimeRecommendationsAsync()
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("From inside SeedAnimeRecommendations");
         var swParse = Stopwatch.StartNew();
 
         IEnumerable<RawAnimeRecommendationsDto> rawAnimeRecommendationsDtos =
@@ -56,6 +59,7 @@ public class SeedAnimeRecommendations
         await _animeRecommendationsLoadRepository
             .InsertAllAnimeRecommendationsAsync(aggregatedRecommendations);
         swLoad.Stop();
+        Profiler.End();
 
         Console.WriteLine(
             $"Parsing took {swParse.ElapsedMilliseconds} ms \n" +

@@ -1,10 +1,10 @@
 using AnimeList.Application.DTOs.Anime;
 using AnimeList.Application.DTOs.User;
 using AnimeList.Application.DTOs.UserAnimeEntries;
-using AnimeList.Application.Interfaces.Anime;
 using AnimeList.Application.Mapping.Anime;
 using AnimeList.Application.Mapping.User;
 using AnimeList.Application.Mapping.UserAnimeEntries;
+using AnimeList.Application.RepoInterfaces.Anime;
 using AnimeList.Application.RepoInterfaces.User;
 using AnimeList.Application.RepoInterfaces.UserAnimeEntry;
 using AnimeList.Domain.Models;

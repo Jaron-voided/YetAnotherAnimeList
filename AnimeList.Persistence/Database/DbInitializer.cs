@@ -148,8 +148,6 @@ public class DbInitializer
                   );
                   """;
         
-
-
         await connection.ExecuteAsync(sql);
     }
 }

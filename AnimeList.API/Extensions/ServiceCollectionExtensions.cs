@@ -3,7 +3,6 @@ using AnimeList.API.Options;
 using AnimeList.Application.Handlers.Anime.Query;
 using AnimeList.Application.Handlers.User;
 using AnimeList.Application.Handlers.UserAnimeEntry;
-using AnimeList.Application.Interfaces.Anime;
 using AnimeList.Application.Mapping.Anime;
 using AnimeList.Application.Mapping.User;
 using AnimeList.Application.Mapping.UserAnimeEntries;
@@ -25,6 +24,7 @@ using AnimeList.Persistence.Repositories.AnimeRecommendations;
 using AnimeList.Persistence.Repositories.AnimeStats;
 using AnimeList.Persistence.Repositories.User;
 using AnimeList.Persistence.Repositories.UserAnimeEntries;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Options;
 // Split this file into 3... eventually
 
@@ -39,6 +39,8 @@ public static class ServiceCollectionExtensions
             {
                 options.JsonSerializerOptions.DefaultIgnoreCondition =
                     JsonIgnoreCondition.WhenWritingNull;
+
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
         return services;
     }
@@ -49,15 +51,34 @@ public static class ServiceCollectionExtensions
         services.Configure<CsvSettings>(config.GetSection("CsvSettings"));
 
         // Connection string from appsettings.json
-        var connectionString =
+        var rawConnectionString =
             config.GetConnectionString("AnimeListDatabase")
             ?? throw new InvalidOperationException("Connection string not found");
 
 
         // DB Connection factory
-        services.AddSingleton<IDbConnectionFactory>(_ =>
-            new SqliteConnectionFactory(connectionString));
+        services.AddSingleton<IDbConnectionFactory>(sp =>
+        {
+            var env = sp.GetRequiredService<IHostEnvironment>();
 
+            var solutionRoot = Directory.GetParent(env.ContentRootPath)!.FullName;
+
+            var stringBuiler = new SqliteConnectionStringBuilder(rawConnectionString);
+
+            if (!Path.IsPathRooted(stringBuiler.DataSource))
+            {
+                stringBuiler.DataSource = Path.Combine(
+                    solutionRoot,
+                    "AnimeList.Persistence",
+                    "Data",
+                    "Database",
+                    Path.GetFileName(stringBuiler.DataSource)
+                );
+            }
+
+            return new SqliteConnectionFactory(stringBuiler.ToString());
+        });
+        
         // Repos
         // Use AddScoped for repos, they are created each time needed
         // Singletons are created once and used for the whole lifetime, they're more expensive though
@@ -68,11 +89,37 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAnimeStatsLoadRepository, AnimeStatsLoadRepository>();
         services.AddScoped<IAnimeRecommendationsLoadRepository, AnimeRecommendationsLoadRepository>();
         services.AddScoped<IAnimeRatingsLoadRepository, AnimeRatingsLoadRepository>();
-
-
+        
+        // Seeding services
+        services.AddScoped<SeedAnime>();
+        services.AddScoped<SeedAnimeStats>();
+        services.AddScoped<SeedAnimeRecommendations>();
+        services.AddScoped<SeedAnimeRatings>();
+        
         // CSV parsers
         // Get paths from Options/CsvSettings
         // When app needs a CSVAnimeParser it calls this and pulls these dependencies
+
+        services.AddOptions<CsvSettings>()
+            // Reads csvSettings section from config source
+            .Bind(config.GetSection("CsvSettings"))
+            // After binding is done, run this function to adjust the options
+            .PostConfigure<IHostEnvironment>((options, env) =>
+            {
+                // Gets content root directory
+                var root = Directory.GetParent(env.ContentRootPath)!.FullName;
+
+                // function to see if paths are already absoulute, if not add root before it
+                string Resolve(string p) =>
+                    Path.IsPathRooted(p) ? p : Path.Combine(root, p);
+                
+                // Takes what is from appSettings and makes it absolute... if needed
+                options.DetailsPath = Resolve(options.DetailsPath);
+                options.StatsPath = Resolve(options.StatsPath);
+                options.RecommendationsPath = Resolve(options.RecommendationsPath);
+                options.RatingsPath = Resolve(options.RatingsPath);
+            });
+        
         services.AddSingleton<CsvAnimeParser>(sp =>
         {
             var csv = sp.GetRequiredService<IOptions<CsvSettings>>().Value;
@@ -105,10 +152,36 @@ public static class ServiceCollectionExtensions
         
         // Aggregation
         services.AddSingleton<RawAnimeRecommendationsAggregator>();
+        
+        // Filtering
+        services.AddScoped<AnimeRatingsFilter>();
 
         // DB Init / orchestration
         services.AddSingleton<DbInitializer>();
         services.AddScoped<AnimeDbOrchestrator>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddApiCors(this IServiceCollection services,
+        ConfigurationManager builderConfiguration)
+    {
+        var allowedOrigins = new[]
+        {
+            "http://localhost:3000",
+            "https://localhost:3000"
+        };
+
+        services.AddCors(options =>
+        {
+            options.AddPolicy("WebDev", policy =>
+            {
+                policy
+                    .WithOrigins(allowedOrigins)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
 
         return services;
     }

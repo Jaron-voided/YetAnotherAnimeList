@@ -1,7 +1,7 @@
 using AnimeList.Application.DTOs.UserAnimeEntries;
-using AnimeList.Application.Interfaces.Anime;
 using AnimeList.Application.Mapping.Anime;
 using AnimeList.Application.Mapping.UserAnimeEntries;
+using AnimeList.Application.RepoInterfaces.Anime;
 using AnimeList.Application.RepoInterfaces.UserAnimeEntry;
 
 namespace AnimeList.Application.Handlers.UserAnimeEntry;

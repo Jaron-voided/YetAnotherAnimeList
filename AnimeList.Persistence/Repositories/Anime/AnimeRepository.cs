@@ -1,5 +1,5 @@
 using System.Collections;
-using AnimeList.Application.Interfaces.Anime;
+using AnimeList.Application.RepoInterfaces.Anime;
 using AnimeList.Domain.Enums;
 using AnimeList.Persistence.Database;
 using Dapper;

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Globalization;
 using CsvHelper;
 
@@ -25,14 +26,23 @@ public class CsvAnimeRatingsParser
 
     public IEnumerable<RawAnimeRatingsDto> StreamRatings()
     {
+        var sw = new Stopwatch();
+        sw.Start();
+        int count = 0;
         using var reader = new StreamReader(_ratingsPath);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
         csv.Read();
         csv.ReadHeader();
-        
+
         while (csv.Read())
+        {
+            count += 1;
             yield return csv.GetRecord<RawAnimeRatingsDto>();
+        }
+        sw.Stop();
+        Console.WriteLine("Parsed rows = "  + count);
+        Console.WriteLine($"Elapsed time for parsing: {sw.Elapsed}");
     }
 
     /*public RawAnimeRatingsDto ParseSingleRow(CsvReader csv)

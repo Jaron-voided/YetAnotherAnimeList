@@ -35,4 +35,6 @@ public class Anime
     public int? Year { get; set; }
 
     public string? Streaming { get; set; }
+    
+    //IEnumerable<AnimeRatings> AnimeRatings {get; set;} = new();
 }

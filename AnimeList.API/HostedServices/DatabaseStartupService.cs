@@ -1,10 +1,10 @@
-using AnimeList.Application.Interfaces.Anime;
 using AnimeList.Application.RepoInterfaces.Anime;
 using AnimeList.Application.RepoInterfaces.AnimeRatings;
 using AnimeList.Application.RepoInterfaces.AnimeRecommendations;
 using AnimeList.Application.RepoInterfaces.AnimeStats;
 using AnimeList.Persistence.Database;
 using AnimeList.Persistence.Database.Orchestrator;
+using AnimeList.Persistence.Diagnostics;
 
 namespace AnimeList.API.HostedServices;
 
@@ -37,10 +37,15 @@ public class DatabaseStartupService : BackgroundService
 
         if (!hasAnime || !hasStats || !hasRecommendations || !hasRatings)
         {
+            Profiler.SetDefaultBufferSize(1024);
+            Profiler.Begin("Database Seed from startup service: main outer root");
+            
             var orchestrator = sp.GetRequiredService<AnimeDbOrchestrator>();
             await orchestrator.SeedDatabaseAsync();
-        }
-        
-    }
+            
+            Profiler.End();
 
+            Profiler.ToConsole();
+        }
+    }
 }

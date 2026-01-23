@@ -1,3 +1,5 @@
+using System.Data;
+using System.Diagnostics;
 using AnimeList.Application.RepoInterfaces.AnimeRatings;
 using AnimeList.Persistence.Database;
 using Dapper;
@@ -14,7 +16,7 @@ public class AnimeRatingsLoadRepository : IAnimeRatingsLoadRepository
     }
     
     private const string insertSql = """
-                                     INSERT INTO AnimeRatings (
+                                     INSERT OR IGNORE INTO AnimeRatings (
                                          Username,
                                          MalId,
                                          Status,
@@ -47,6 +49,36 @@ public class AnimeRatingsLoadRepository : IAnimeRatingsLoadRepository
         
         await conn.ExecuteAsync(insertSql, animeRating);
     }
+
+    public async Task InsertAnimeRatingsBatchAsync(
+        IReadOnlyList<Domain.Models.AnimeRatings> animeRatingsBatch, 
+        IDbConnection conn
+        )
+    {
+        var sw = new Stopwatch();
+        sw.Start();
+             
+        using var tx = conn.BeginTransaction();
+
+        try
+        {
+            await conn.ExecuteAsync(
+                insertSql,
+                animeRatingsBatch,
+                transaction: tx
+            );
+
+            tx.Commit();
+        }
+        catch
+        {
+            tx.Rollback();
+            throw;
+        }
+        
+        sw.Stop();
+        Console.WriteLine($"Elapsed time for this batch: {sw.Elapsed}");
+    }
     
     // Could look into batching, but this fast enough for now!!
     public async Task InsertAllAnimeRatingsAsync(IEnumerable<Domain.Models.AnimeRatings> animeRatings)
@@ -74,6 +106,8 @@ public class AnimeRatingsLoadRepository : IAnimeRatingsLoadRepository
             tx.Rollback();
             throw;
         }
+
+        
     }    
    
 }

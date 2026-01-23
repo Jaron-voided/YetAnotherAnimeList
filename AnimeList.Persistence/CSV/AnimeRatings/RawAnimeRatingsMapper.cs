@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using AnimeList.Domain.Enums;
 
 namespace AnimeList.Persistence.CSV.AnimeRatings;
@@ -17,6 +18,20 @@ public class RawAnimeRatingsMapper
         };
         
         return modelAnimeRating;
+    }
+
+    public IEnumerable<Domain.Models.AnimeRatings> MapAll(IEnumerable<RawAnimeRatingsDto> ratingsDtos)
+    {
+        var sw = new Stopwatch();
+        sw.Start();
+        int count = 0;
+
+        foreach (var animeRatingDto in ratingsDtos)
+            yield return Map(animeRatingDto);
+            
+        sw.Stop();
+        Console.WriteLine("Parsed rows = "  + count);
+        Console.WriteLine($"Elapsed time for mapping: {sw.Elapsed}");
     }
 
     private UserAnimeEnums.WatchStatus MapStatus(RawAnimeRatingsDto dto)

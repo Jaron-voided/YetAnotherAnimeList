@@ -1,17 +1,11 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
+import mkcert from 'vite-plugin-mkcert'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
   server: {
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'https://localhost:5001',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+    port: 3000
   },
+  plugins: [react(), mkcert()],
 })

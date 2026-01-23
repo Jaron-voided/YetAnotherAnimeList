@@ -2,6 +2,7 @@ using System.Diagnostics;
 using AnimeList.Application.RepoInterfaces.Anime;
 using AnimeList.Domain.Models;
 using AnimeList.Persistence.CSV.Anime;
+using AnimeList.Persistence.Diagnostics;
 
 namespace AnimeList.Persistence.Database.Orchestrator;
 
@@ -39,6 +40,8 @@ public class SeedAnime
 
     internal async Task SeedAnimeAsync()
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("From inside SeedAnimeAsync");
         var swParse = Stopwatch.StartNew();
 
         IEnumerable<RawAnimeDto> rawAnimeDtos = _csvAnimeParser.Parse();
@@ -58,6 +61,7 @@ public class SeedAnime
 
         Console.WriteLine($"Parsing took {swParse.ElapsedMilliseconds} ms \n, " +
                           $"Mapping took {swMap.ElapsedMilliseconds} ms \n, " +
-                          $"Loading DB took {swLoad.ElapsedMilliseconds} ms"); 
+                          $"Loading DB took {swLoad.ElapsedMilliseconds} ms");
+        Profiler.End();
     }
 }

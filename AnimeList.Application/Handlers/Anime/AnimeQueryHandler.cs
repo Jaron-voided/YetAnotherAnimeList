@@ -1,9 +1,9 @@
 using AnimeList.Application.DTOs.Anime;
 using AnimeList.Application.DTOs.UserAnimeEntries;
-using AnimeList.Application.Interfaces;
-using AnimeList.Application.Interfaces.Anime;
+using AnimeList.Application.RepoInterfaces;
 using AnimeList.Application.Mapping;
 using AnimeList.Application.Mapping.Anime;
+using AnimeList.Application.RepoInterfaces.Anime;
 using AnimeList.Domain.Enums;
 
 namespace AnimeList.Application.Handlers.Anime.Query;
@@ -70,6 +70,9 @@ public class AnimeQueryHandler
         
         return _mapper.ToDtoList(models);
     }
+    
+    // GetAnimeWithRatings
+    // GetAnimeWith????
 
     /*// optional future:
     public async Task<IEnumerable<AnimeDto>> FilterAsync(

@@ -2,6 +2,7 @@ using System.Diagnostics;
 using AnimeList.Application.RepoInterfaces.AnimeStats;
 using AnimeList.Domain.Models;
 using AnimeList.Persistence.CSV.AnimeStats;
+using AnimeList.Persistence.Diagnostics;
 
 namespace AnimeList.Persistence.Database.Orchestrator;
 
@@ -24,6 +25,8 @@ public class SeedAnimeStats
     
     internal async Task SeedAnimeStatsAsync()
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("From SeedAnimeStats");
         var swParse = Stopwatch.StartNew();
 
         IEnumerable<RawAnimeStatsDto> rawAnimeStatsDtos = _csvAnimeStatsParser.Parse();
@@ -39,6 +42,7 @@ public class SeedAnimeStats
         await _animeStatsLoadRepository.InsertAllAnimeStatsAsync(cleanAnimeStats);
         swLoad.Stop();
 
+        Profiler.End();
         Console.WriteLine($"Parsing took {swParse.ElapsedMilliseconds} ms \n, " +
                           $"Mapping took {swMap.ElapsedMilliseconds} ms \n, " +
                           $"Loading DB took {swLoad.ElapsedMilliseconds} ms"); 

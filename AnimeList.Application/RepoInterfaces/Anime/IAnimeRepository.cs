@@ -1,6 +1,6 @@
 using AnimeList.Domain.Enums;
 
-namespace AnimeList.Application.Interfaces.Anime;
+namespace AnimeList.Application.RepoInterfaces.Anime;
 
 public interface IAnimeRepository
 {

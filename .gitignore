@@ -488,3 +488,10 @@ Data/CSVs/details.csv
 Data/CSVs/ratings.csv
 Data/CSVs/recommendations.csv
 Data/CSVs/stats.csv
+
+# SQLite database files (and sidecars)
+**/*.db
+**/*.db-wal
+**/*.db-shm
+**/*.sqlite
+**/*.sqlite3

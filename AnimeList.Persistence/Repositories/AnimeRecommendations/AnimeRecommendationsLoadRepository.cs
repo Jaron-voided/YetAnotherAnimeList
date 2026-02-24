@@ -1,5 +1,6 @@
 using AnimeList.Application.RepoInterfaces.AnimeRecommendations;
 using AnimeList.Persistence.Database;
+using AnimeList.Persistence.Diagnostics;
 using Dapper;
 
 namespace AnimeList.Persistence.Repositories.AnimeRecommendations;
@@ -38,6 +39,9 @@ public class AnimeRecommendationsLoadRepository : IAnimeRecommendationsLoadRepos
     public async Task InsertAllAnimeRecommendationsAsync(
         IEnumerable<Domain.Models.AnimeRecommendations> animeRecommendations)
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("Loading Anime Recommendations from repo");
+
         Console.WriteLine(
             $"AnimeLoadRepo assumes it is being passed ${animeRecommendations.Count()} animesRecommendations");
         using var conn = _dbConnectionFactory.CreateConnection();
@@ -60,5 +64,6 @@ public class AnimeRecommendationsLoadRepository : IAnimeRecommendationsLoadRepos
             tx.Rollback();
             throw;
         }
+        Profiler.End();
     }
 }

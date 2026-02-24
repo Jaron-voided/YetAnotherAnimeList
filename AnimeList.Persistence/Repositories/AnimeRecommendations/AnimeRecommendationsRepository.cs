@@ -107,4 +107,19 @@ public class AnimeRecommendationsRepository : IAnimeRecommendationsRepository
             suggestedMalId
         });
     }
+
+    public async Task<List<int>> GetAllSuggestedIdsForBaseAsync(int baseMalId)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+
+        const string sql = """
+                           SELECT SuggestedMalId
+                           FROM AnimeRecommendations
+                           WHERE BaseMalId = @baseMalId
+                           """;
+
+        return (await connection.QueryAsync<int>(sql, new { baseMalId}))
+            .Distinct()
+            .ToList();
+    }
 }

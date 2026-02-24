@@ -1,8 +1,9 @@
-using System.Data;
-using System.Diagnostics;
 using AnimeList.Application.RepoInterfaces.AnimeRatings;
 using AnimeList.Persistence.Database;
+using AnimeList.Persistence.Diagnostics;
 using Dapper;
+using System.Data;
+using System.Diagnostics;
 
 namespace AnimeList.Persistence.Repositories.AnimeRatings;
 
@@ -55,6 +56,9 @@ public class AnimeRatingsLoadRepository : IAnimeRatingsLoadRepository
         IDbConnection conn
         )
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("Loading Anime Ratings from repo");
+
         var sw = new Stopwatch();
         sw.Start();
              
@@ -78,11 +82,15 @@ public class AnimeRatingsLoadRepository : IAnimeRatingsLoadRepository
         
         sw.Stop();
         Console.WriteLine($"Elapsed time for this batch: {sw.Elapsed}");
+        Profiler.End();
     }
     
     // Could look into batching, but this fast enough for now!!
     public async Task InsertAllAnimeRatingsAsync(IEnumerable<Domain.Models.AnimeRatings> animeRatings)
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("Seeding Ratings from ratings repo");
+
         var ratingsList = animeRatings.ToList();
         Console.WriteLine($"AnimeRatingsLoadRepo assumes it is being passed ${ratingsList.Count} animes");
 
@@ -107,7 +115,7 @@ public class AnimeRatingsLoadRepository : IAnimeRatingsLoadRepository
             throw;
         }
 
-        
+        Profiler.End();
     }    
    
 }

@@ -13,4 +13,6 @@ public interface IAnimeRepository
     Task<IEnumerable<Domain.Models.Anime>> GetByStatusAsync(AnimeEnums.AnimeStatus status);
     Task<IEnumerable<Domain.Models.Anime>> GetByRatingAsync(AnimeEnums.AnimeRating rating);
     Task<IEnumerable<Domain.Models.Anime>> GetMultipleAnimeByIdAsync(List<int> animeEntryIds);
+    Task<Domain.ViewModels.AnimeCardReadModel?> GetAnimeRecommendationItemByIdAsync(int animeEntryId);
+    Task<IEnumerable<Domain.ViewModels.AnimeCardReadModel>> GetAnimeRecommendationItemsByIdsAsync(IEnumerable<int> animeEntryIds);
 }

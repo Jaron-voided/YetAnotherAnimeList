@@ -4,7 +4,6 @@ namespace AnimeList.Domain.Models;
 
 public class AnimeRatings
 {
-    // Should this be nullable?
     public string Username { get; set; }
 
     public int MalId { get; set; }
@@ -14,5 +13,4 @@ public class AnimeRatings
     public int Score { get; set; }
     
     public int NumberOfWatchedEpisodes { get; set; }
-
 }

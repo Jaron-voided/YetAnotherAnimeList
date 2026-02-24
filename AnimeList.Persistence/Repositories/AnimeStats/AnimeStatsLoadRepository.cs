@@ -1,5 +1,6 @@
 using AnimeList.Application.RepoInterfaces.AnimeStats;
 using AnimeList.Persistence.Database;
+using AnimeList.Persistence.Diagnostics;
 using Dapper;
 
 namespace AnimeList.Persistence.Repositories.AnimeStats;
@@ -62,6 +63,9 @@ public class AnimeStatsLoadRepository : IAnimeStatsLoadRepository
 
     public async Task InsertAllAnimeStatsAsync(IEnumerable<Domain.Models.AnimeStats> animeStats)
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("Loading Anime Stats from Anime Stats Load Repo");
+
         using var conn = _connectionFactory.CreateConnection();
         conn.Open();
         
@@ -82,5 +86,6 @@ public class AnimeStatsLoadRepository : IAnimeStatsLoadRepository
             tx.Rollback();
             throw;
         }
+        Profiler.End();
     }
 }

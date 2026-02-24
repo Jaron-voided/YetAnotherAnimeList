@@ -1,6 +1,7 @@
 using System.Collections;
 using AnimeList.Application.RepoInterfaces.Anime;
 using AnimeList.Domain.Enums;
+using AnimeList.Domain.ViewModels;
 using AnimeList.Persistence.Database;
 using Dapper;
 
@@ -107,6 +108,28 @@ public class AnimeRepository : IAnimeRepository
                          WHERE MalId IN @Ids";
 
         return await connection.QueryAsync<Domain.Models.Anime>(sql, new { Ids = animeEntryIds });
+    }
+
+    public async Task<AnimeCardReadModel?> GetAnimeRecommendationItemByIdAsync(int animeEntryId)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+
+        const string sql = @"SELECT MalId, Title, ImageUrl, Score
+                           FROM Anime
+                           WHERE MalId = @Id";
+
+        return await connection.QuerySingleOrDefaultAsync<AnimeCardReadModel>(sql, new { Id = animeEntryId });
+    }
+
+    public async Task<IEnumerable<AnimeCardReadModel>> GetAnimeRecommendationItemsByIdsAsync(IEnumerable<int> animeEntryIds)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+
+        const string sql = @"SELECT MalId, Title, ImageUrl, Score
+                           FROM Anime
+                           WHERE MalId IN @Ids";
+
+        return await connection.QueryAsync<AnimeCardReadModel>(sql, new { Ids = animeEntryIds });
     }
 
 }

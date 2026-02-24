@@ -1,6 +1,7 @@
+using AnimeList.Persistence.Diagnostics;
+using CsvHelper;
 using System.Diagnostics;
 using System.Globalization;
-using CsvHelper;
 
 namespace AnimeList.Persistence.CSV.AnimeRatings;
 
@@ -26,6 +27,9 @@ public class CsvAnimeRatingsParser
 
     public IEnumerable<RawAnimeRatingsDto> StreamRatings()
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("Stream parsing from Ratings Parser");
+
         var sw = new Stopwatch();
         sw.Start();
         int count = 0;
@@ -41,6 +45,7 @@ public class CsvAnimeRatingsParser
             yield return csv.GetRecord<RawAnimeRatingsDto>();
         }
         sw.Stop();
+        Profiler.End();
         Console.WriteLine("Parsed rows = "  + count);
         Console.WriteLine($"Elapsed time for parsing: {sw.Elapsed}");
     }

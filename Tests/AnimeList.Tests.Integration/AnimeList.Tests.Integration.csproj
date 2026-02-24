@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AnimeList.API\AnimeList.API.csproj" />
+
     <ProjectReference Include="..\..\AnimeList.Persistence\AnimeList.Persistence.csproj" />
     <ProjectReference Include="..\..\AnimeList.Application\AnimeList.Application.csproj" />
     <ProjectReference Include="..\..\AnimeList.Domain\AnimeList.Domain.csproj" />

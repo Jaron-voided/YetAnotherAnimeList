@@ -1,5 +1,6 @@
 using AnimeList.Application.RepoInterfaces.Anime;
 using AnimeList.Persistence.Database;
+using AnimeList.Persistence.Diagnostics;
 using Dapper;
 
 namespace AnimeList.Persistence.Repositories.Anime;
@@ -73,6 +74,9 @@ public class AnimeLoadRepository : IAnimeLoadRepository
     // Could look into batching, but this fast enough for now!!
     public async Task InsertAllAnimeAsync(IEnumerable<Domain.Models.Anime> animes)
     {
+        Profiler.SetDefaultBufferSize(1024);
+        Profiler.Begin("Seeding Anime from AnimeLoad Repo");
+
         Console.WriteLine($"AnimeLoadRepo assumes it is being passed ${animes.Count()} animes");
         using var conn = _connectionFactory.CreateConnection();
         conn.Open();
@@ -94,6 +98,7 @@ public class AnimeLoadRepository : IAnimeLoadRepository
             tx.Rollback();
             throw;
         }
+        Profiler.End();
     }    
     
     /* This method is 

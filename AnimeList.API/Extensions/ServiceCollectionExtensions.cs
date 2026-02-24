@@ -1,6 +1,8 @@
 using System.Text.Json.Serialization;
 using AnimeList.API.Options;
 using AnimeList.Application.Handlers.Anime.Query;
+using AnimeList.Application.Handlers.AnimeViews;
+using AnimeList.Application.Handlers.TasteRecommendations;
 using AnimeList.Application.Handlers.User;
 using AnimeList.Application.Handlers.UserAnimeEntry;
 using AnimeList.Application.Mapping.Anime;
@@ -42,6 +44,7 @@ public static class ServiceCollectionExtensions
 
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
+
         return services;
     }
 
@@ -84,11 +87,18 @@ public static class ServiceCollectionExtensions
         // Singletons are created once and used for the whole lifetime, they're more expensive though
         services.AddScoped<IAnimeLoadRepository, AnimeLoadRepository>();
         services.AddScoped<IAnimeRepository, AnimeRepository>();
+
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserAnimeEntryRepository, UserAnimeEntryRepository>();
+        
         services.AddScoped<IAnimeStatsLoadRepository, AnimeStatsLoadRepository>();
+        services.AddScoped<IAnimeStatsRepository, AnimeStatsRepository>();
+        
         services.AddScoped<IAnimeRecommendationsLoadRepository, AnimeRecommendationsLoadRepository>();
+        services.AddScoped<IAnimeRecommendationsRepository, AnimeRecommendationsRepository>();
+
         services.AddScoped<IAnimeRatingsLoadRepository, AnimeRatingsLoadRepository>();
+        services.AddScoped<IAnimeRatingsRepository, AnimeRatingsRepository>();
         
         // Seeding services
         services.AddScoped<SeedAnime>();
@@ -198,6 +208,10 @@ public static class ServiceCollectionExtensions
         services.AddScoped<UserAnimeEntryCommandHandler>();
         services.AddSingleton<IUserAnimeEntryMapper, UserAnimeEntryMapper>();
         
+        services.AddScoped<AnimeViewQueryHandler>();
+
+        services.AddScoped<TasteQueryHandler>();
+
         return services;
     }
 }

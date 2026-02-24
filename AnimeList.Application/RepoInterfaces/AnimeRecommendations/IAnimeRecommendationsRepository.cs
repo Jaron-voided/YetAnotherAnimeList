@@ -5,6 +5,7 @@ namespace AnimeList.Application.RepoInterfaces.AnimeRecommendations;
 public interface IAnimeRecommendationsRepository
 {
     Task<IEnumerable<Domain.Models.AnimeRecommendations>> GetAllAsync();
+    Task<List<int>> GetAllSuggestedIdsForBaseAsync(int baseMalId);
     Task<bool> ExistsAsync(int baseMalId, int suggestedMalId);
     Task<IEnumerable<AnimeRecommendationProjections.RecommendationEdge>> GetRecommendationsForBaseAnimeAsync(int baseMalId, int limit);
     Task<IEnumerable<AnimeRecommendationProjections.RecommendationEdge>> GetRecommendationsForMultipleBaseAnimeAsync(IEnumerable<int> baseMalIds, int perBaseLimit);

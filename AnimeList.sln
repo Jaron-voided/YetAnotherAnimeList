@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeList.API", "AnimeList.API\AnimeList.API.csproj", "{ADB5019F-743E-4577-80D9-C3FA235DAB14}"
 EndProject
@@ -21,9 +21,6 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{ADB5019F-743E-4577-80D9-C3FA235DAB14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -51,8 +48,14 @@ Global
 		{26957210-4F86-448C-85BB-EF0C4B9C58B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26957210-4F86-448C-85BB-EF0C4B9C58B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0CC78386-A64B-4DBD-A9E1-5E1F92982E31} = {0A980F9C-E881-4633-9096-2A1905A32A70}
 		{26957210-4F86-448C-85BB-EF0C4B9C58B0} = {0A980F9C-E881-4633-9096-2A1905A32A70}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C673552-81D8-4C5C-99D8-F88D5ACD5559}
 	EndGlobalSection
 EndGlobal

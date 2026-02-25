@@ -2,7 +2,7 @@ import './styles.css'
 import {Container, CssBaseline} from "@mui/material";
 import NavBar from "./NavBar.tsx";
 import Box from "@mui/material/Box";
-import {Outlet} from "react-router";
+import {Outlet} from "react-router-dom";
 
 function App() {
 

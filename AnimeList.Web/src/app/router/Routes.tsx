@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router";
+import {createBrowserRouter} from "react-router-dom";
 import App from "../layout/App.tsx";
 import HomePage from "../../features/home/HomePage.tsx";
 import AnimeDashboard from "../../features/anime/AnimeDashboard.tsx";

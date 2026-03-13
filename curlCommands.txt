@@ -1,0 +1,23 @@
+// Search by ID
+curl -k -s https://localhost:5001/api/anime/1 | jq
+
+// Search by title
+curl -k -s "https://localhost:5001/api/anime/search?title=naruto" | jq
+
+// Search by minimum score
+curl -k -s "https://localhost:5001/api/anime/minScore?minScore=8.5" | jq
+
+//Anime Item View 
+curl -k -s https://localhost:5001/api/animeviews/1 | jq
+
+// Anime Stats
+curl -k -s https://localhost:5001/api/animeviews/1/stats | jq
+
+// Get recommendations based on anime you enjoy
+curl -k -s -X POST https://localhost:5001/api/tasterecommendations \
+-H "Content-Type: application/json" \
+-d '{
+  "favoriteAnimeIds": [16498, 5114, 9253],
+  "minScore": 7.5,
+  "minCommonAnime": 3
+}' | jq

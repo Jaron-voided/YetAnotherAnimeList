@@ -82,6 +82,15 @@ dotnet test Tests/AnimeList.Tests.Unit
 dotnet test Tests/AnimeList.Tests.Integration
 ```
 
+## AI Usage
+
+AI assistance was used in this project in accordance with course policy. The following files were written with AI help under direct instruction:
+
+- `AnimeList.Web/src/features/anime/card/AnimeCard.module.css` — CSS styling for the anime card component
+- `AnimeList.Web/src/features/anime/list/AnimeList.module.css` — CSS grid layout for the anime list
+
+Both files are commented accordingly and were reviewed and approved before use. All other code was written by the student.
+
 ## Reflection
 
 **What did you learn from this project?**

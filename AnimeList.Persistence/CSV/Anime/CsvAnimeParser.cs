@@ -8,7 +8,7 @@ public class CsvAnimeParser
 {
     private readonly string _detailsPath;
 
-    public CsvAnimeParser(string detailsPath/* = "/home/izaya/Desktop/YetAnotherAnimeList/Data/CSVs/details.csv"*/)
+    public CsvAnimeParser(string detailsPath)
     {
         _detailsPath = detailsPath;
     }

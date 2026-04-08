@@ -495,3 +495,14 @@ Data/CSVs/stats.csv
 **/*.db-shm
 **/*.sqlite
 **/*.sqlite3
+
+# Copilot instructions (local only)
+.github/copilot-instructions.md
+
+# Frontend build output
+AnimeList.Web/dist/
+
+# Frontend environment files
+AnimeList.Web/.env.local
+AnimeList.Web/.env.production
+AnimeList.Web/.env.*.local

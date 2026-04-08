@@ -80,10 +80,6 @@ dotnet test
 # Run a specific test project
 dotnet test Tests/AnimeList.Tests.Unit
 dotnet test Tests/AnimeList.Tests.Integration
-
-# Run a specific test class or method
-dotnet test --filter "FullyQualifiedName~AnimeMapperTests"
-dotnet test --filter "FullyQualifiedName~AnimeMapperTests.MalIdMapperTest"
 ```
 
 ## Reflection

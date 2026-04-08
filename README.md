@@ -68,3 +68,34 @@ npm run dev
 The app will be available at `https://localhost:3000`.
 
 > **Note:** Your browser may warn about a self-signed certificate. This is expected for local development — click through to proceed.
+
+## Running Tests
+
+From the root of the project:
+
+```bash
+# Run all tests
+dotnet test
+
+# Run a specific test project
+dotnet test Tests/AnimeList.Tests.Unit
+dotnet test Tests/AnimeList.Tests.Integration
+
+# Run a specific test class or method
+dotnet test --filter "FullyQualifiedName~AnimeMapperTests"
+dotnet test --filter "FullyQualifiedName~AnimeMapperTests.MalIdMapperTest"
+```
+
+## Reflection
+
+**What did you learn from this project?**
+
+This project taught me how to architect and structure a larger application from the ground up. Working with a significant volume of data highlighted how important it is to think carefully about efficiency — both in how data is stored and how it's retrieved. It also reinforced how critical upfront planning is: taking the time to map out the structure before writing code kept the project far more organized and maintainable than it would have been otherwise.
+
+**What did you learn from this course?**
+
+The course gave me a much clearer picture of what day-to-day software development actually looks like as a career. It reinforced the value of things that are easy to overlook — proper testing, thoughtful project structure, and clean separation of concerns. These aren't just good habits; they're what separates maintainable code from code that becomes a liability.
+
+**If you had more time, what would you have done differently?**
+
+I would have invested more time upfront in organizing the project structure and making better use of interfaces and inheritance to reduce duplication. On the feature side, I would have built out more API endpoints and consumed them in the frontend to give users a richer, more complete experience.

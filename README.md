@@ -9,11 +9,13 @@ A full-stack anime list application with an ASP.NET Core 8 REST API backend and 
 
 ## Data Setup
 
-The CSV data files are not included in the repository. Download them from the link below and place all four files into the `Data/CSVs/` folder at the root of the project:
+The CSV and database files are not included in the repository. Download them from the link below:
 
-**[Download CSVs](https://drive.google.com/drive/u/2/folders/1vKGKImVxT3nvZKzPIH0fkNH1zC7qLLne)**
+**[Download Data Files](https://drive.google.com/drive/u/2/folders/1vKGKImVxT3nvZKzPIH0fkNH1zC7qLLne)**
 
-Expected files:
+Place the files as follows:
+
+**CSVs** → `Data/CSVs/` (at the root of the project)
 ```
 Data/
 └── CSVs/
@@ -23,21 +25,39 @@ Data/
     └── ratings.csv
 ```
 
-The SQLite database is created and seeded automatically the first time the API starts — you do not need to set one up manually.
+**Database** → `AnimeList.Persistence/Data/Database/`
+```
+AnimeList.Persistence/
+└── Data/
+    └── Database/
+        └── anime.db
+```
+
+> **Note:** If you place the database file, it will be used as-is. If you omit it, the database will be created and seeded automatically from the CSVs on first run (this may take a moment).
 
 ## Running the Project
 
-### 1. Start the API
+### 1. Trust the development certificate
+
+Run this once from anywhere on your machine:
+
+```bash
+dotnet dev-certs https --trust
+```
+
+### 2. Start the API
+
+From the root of the project:
 
 ```bash
 dotnet run --project AnimeList.API
 ```
 
-The API will be available at `https://localhost:5001`. On first run it will create the database and load all CSV data (this may take a moment).
+The API will be available at `https://localhost:5001`.
 
-### 2. Start the Frontend
+### 3. Start the Frontend
 
-In a separate terminal:
+In a separate terminal, from the root of the project:
 
 ```bash
 cd AnimeList.Web
